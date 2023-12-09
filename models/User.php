@@ -1,13 +1,28 @@
 <?php
 
-include("./Database.php");
+require_once("../models/Database.php");
 
 class User
 {
+    //
+    public static function all()
+    {
+        $sql = "SELECT 
+            users.id, 
+            users.firstName,
+            users.LastName,
+            tasks.achieved,
+            users.lastName as writer 
+        FROM tasks JOIN users 
+        WHERE tasks.writer = users.id 
+        ORDER BY tasks.created_at DESC;";
+
+        return (new Database)->query($sql);
+    }
     //* create a new user
     public static function create_user($first_name, $last_name, $email, $password)
     {
-        $sql = "INSERT INTO users (firstName, lastName, email, password) VALUES (:firstName, :lastName, :email, :password)";
+        $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (:firstName, :lastName, :email, :password)";
 
         $params = [
             ":firstName" => $first_name,
@@ -15,6 +30,7 @@ class User
             ":email" => $email,
             ":password" => $password
         ];
+
         return (new Database)->query($sql, $params);
     }
 
@@ -33,7 +49,7 @@ class User
     // update the user
     public static function update($id, $first_name, $last_name)
     {
-        $sql = "UPDATE users SET firstName = :firstName, lastName = :lastName WHERE id = :id";
+        $sql = "UPDATE users SET first_name = :firstName, last_name = :lastName WHERE id = :id";
 
         $params = [
             ":firstName" => $first_name,

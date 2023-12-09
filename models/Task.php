@@ -1,21 +1,26 @@
 <?php
-
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once("../models/Database.php");
 class Task
 {
 
-    public static function all()
+    public static function all($writer)
     {
         $sql = "SELECT 
             tasks.id, 
             tasks.name,
             tasks.achieved,
-            users.lastName as writer 
-        FROM tasks JOIN users 
-        WHERE tasks.writer = users.id 
+            tasks.writer
+        FROM tasks 
+        JOIN users ON tasks.writer = users.id
+        WHERE tasks.writer = :writer
         ORDER BY tasks.created_at DESC;";
+        $params = [
+            ":writer" => $writer
+        ];
 
-        return (new Database)->query($sql);
+        return (new Database)->query($sql, $params);
     }
     //* create a new task
     public static function create($name, $writer)
@@ -26,6 +31,7 @@ class Task
             ":name" => $name,
             ":writer" => $writer
         ];
+
         return (new Database)->query($sql, $params);
     }
 
