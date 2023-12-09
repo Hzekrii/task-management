@@ -20,6 +20,7 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
 
 <body>
     <!-- Form to add elements to the table -->
+    <a class="btn btn-dark p-absolute m-0" href="./logout.php">LogOut</a>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center d-flex flex-column justify-content-center">

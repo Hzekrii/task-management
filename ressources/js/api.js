@@ -90,7 +90,7 @@ function createTaskListItem(task) {
     updateForm.method = 'POST';
 
     const taskInput = document.createElement('input');
-    taskInput.classList.add('form-control', 'me-2'); // Bootstrap class for the input
+    taskInput.classList.add('form-control', 'me-1'); // Bootstrap class for the input
     taskInput.setAttribute('type', 'text');
     taskInput.setAttribute('name', 'name');
     taskInput.setAttribute('value', task.name); // Adjust to match the task properties
@@ -102,12 +102,12 @@ function createTaskListItem(task) {
     taskIdInput.setAttribute('value', task.id);
 
     const saveBtn = document.createElement('button');
-    saveBtn.classList.add('btn', 'btn-primary', 'me-2'); // Bootstrap classes for the "Save" button
+    saveBtn.classList.add('btn', 'btn-primary', 'me-1'); // Bootstrap classes for the "Save" button
     saveBtn.setAttribute('type', 'submit');
     saveBtn.textContent = 'Save'; // Button text for saving
 
     const updateBtn = document.createElement('button');
-    updateBtn.classList.add('btn', 'btn-secondary', 'me-2'); // Bootstrap classes for the "Update" button
+    updateBtn.classList.add('btn', 'btn-secondary', 'me-1'); // Bootstrap classes for the "Update" button
     updateBtn.textContent = 'Update'; // Button text for updating
 
     // Event listener to toggle the disabled attribute and button text
@@ -124,7 +124,7 @@ function createTaskListItem(task) {
 
     // Delete form
     const deleteForm = document.createElement('form');
-    deleteForm.classList.add('col-auto', 'mb-2', 'text-center');
+    deleteForm.classList.add('col-auto', 'text-center');
     deleteForm.action = '.././controllers/TaskController.php'; // Replace with the correct endpoint for task deletion
     deleteForm.method = 'POST';
 
