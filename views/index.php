@@ -36,31 +36,54 @@ unset($_SESSION['login_errors']); // unset signup error session variables;
 </head>
 
 <body>
-    <div>
-        <button id="loginbtn">log In</button>
-        <button id="signupbtn">sign Up</button>
 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-8"> <!-- Adjust the col-sm-* value as needed -->
+                <div class="text-center mt-3 mb-3">
+                    <div class="btn-group">
+                        <button id="loginbtn" class="btn btn-secondary">Log In</button>
+                        <button id="signupbtn" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+
+                <div id="loginform" class="loginform" style="display:none">
+                    <form action="../controllers/UserController.php" method="POST">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                            <small class="form-text text-muted"><?= $old_login_email ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+
+                <div id="signupform" class="signupform" style="display:block">
+                    <form action="../controllers/UserController.php" method="POST">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="First Name" name="first_name">
+                            <small class="form-text text-muted"><?= $old_firstName ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Last Name" name="last_name">
+                            <small class="form-text text-muted"><?= $old_lastName ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                            <small class="form-text text-muted"><?= $old_signup_email ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="loginform" class="loginform" style="display:none">
-        <form action="../controllers/UserController.php" method="POST">
-            <input type="email" placeholder="email" name="email">
-            <small><?= $old_login_email ?></small>
-            <input type="password" placeholder="password" name="password">
-            <button type="submit">Save</button>
-        </form>
-    </div>
-    <div id="signupform" class="signupform" style="display:block">
-        <form action="../controllers/UserController.php" method="POST">
-            <input type="text" placeholder="first Name" name="first_name">
-            <small><?= $old_firstName ?></small>
-            <input type="text" placeholder="last Name" name="last_name">
-            <small><?= $old_lastName ?></small>
-            <input type="email" placeholder="email" name="email">
-            <small><?= $old_signup_email ?></small>
-            <input type="password" placeholder="password" name="password">
-            <button type="submit">Save</button>
-        </form>
-    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../ressources/js/script.js"></script>
 </body>

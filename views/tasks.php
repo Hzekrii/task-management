@@ -20,12 +20,28 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
 
 <body>
     <!-- Form to add elements to the table -->
-    <p>Hello mr <?= $_SESSION["user"]["last_name"] ?></p>
-    <form action="../controllers/TaskController.php" method="POST">
-        <input type="text" name="name" id="" placeholder="Task Content">
-        <input type="hidden" name="writer" value="<?= $user['id'] ?>">
-        <button type="submit">Save</button>
-    </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center d-flex flex-column justify-content-center">
+                <div class="mt-4 mb-3">
+                    <h1>Task Manager</h1>
+                </div>
+                <div class="m-5">
+                    <form action="../controllers/TaskController.php" method="POST" class="d-flex justify-content-center">
+                        <div class="me-2 mb-3">
+                            <input class="form-control" type="text" name="name" placeholder="Task Content">
+                            <input class="form-control" type="hidden" name="writer" value="<?= $user['id'] ?>">
+                        </div>
+                        <div class="ms-2">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <ul id="taskList"></ul>
 
