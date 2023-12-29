@@ -36,8 +36,8 @@ unset($_SESSION['login_errors']); // unset signup error session variables;
 </head>
 
 <body>
-
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-sm-8"> <!-- Adjust the col-sm-* value as needed -->
                 <div class="text-center mt-3 mb-3">
