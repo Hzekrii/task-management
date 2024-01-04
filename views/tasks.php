@@ -21,7 +21,6 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
 
 <body>
     <div id="app">
-        <h1>{{message}} </h1>
         <!-- Form to add elements to the table -->
         <a class="btn btn-dark p-absolute m-0" href="./logout.php">LogOut</a>
         <div class="container">
@@ -34,7 +33,7 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
                         <form action="../controllers/TaskController.php" method="POST" class="d-flex justify-content-center">
                             <div class="me-2 mb-3">
                                 <input class="form-control" type="text" name="name" placeholder="Task Content">
-                                <input class="form-control" type="hidden" name="writer" value="<?= $user['id'] ?>">
+                                <input class="form-control" type="hidden" name="project_id" value="1">
                             </div>
                             <div class="ms-2">
                                 <button class="btn btn-primary" type="submit">Save</button>

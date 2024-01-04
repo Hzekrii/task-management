@@ -10,7 +10,7 @@
         <h3>Tasks:</h3>
         <ul>
             <li v-for="task in tasks" :key="task.id">
-                Name : {{ task.name }} - ID: {{ task.id }}, Achieved: {{ task.achieved ? 'Yes' : 'No' }}
+                Name : {{ task.name }} - ID: {{ task.id }}, Status: {{ task.status }}
             </li>
         </ul>
     </div>
@@ -32,6 +32,7 @@ function login() {
 axios.get("http://localhost/task-management/api/data.php") // Update the URL based on your project structure
     .then((response) => {
         tasks.splice(0, tasks.length, ...response.data); // Replace contents of 'tasks' with the received data
+        console.log(response.data)
     })
     .catch((error) => {
         console.log(error);
