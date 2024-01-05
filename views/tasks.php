@@ -1,13 +1,16 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
+require_once('../models/Status.php');
+
 // the title of the <th> tags
-$user = $_SESSION["user"]; // getting all the clients, they will be shown in the select in the from;
+$status = Status::all(); // getting all the clients, they will be shown in the select in the from;
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="UTF-8">
@@ -20,36 +23,40 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
 </head>
 
 <body>
-    <div id="app">
-        <!-- Form to add elements to the table -->
-        <a class="btn btn-dark p-absolute m-0" href="./logout.php">LogOut</a>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center d-flex flex-column justify-content-center">
-                    <div class="mt-4 mb-3">
-                        <h1>Task Manager</h1>
-                    </div>
-                    <div class="m-5">
-                        <form action="../controllers/TaskController.php" method="POST" class="d-flex justify-content-center">
-                            <div class="me-2 mb-3">
-                                <input class="form-control" type="text" name="name" placeholder="Task Content">
-                                <input class="form-control" type="hidden" name="project_id" value="1">
-                            </div>
-                            <div class="ms-2">
-                                <button class="btn btn-primary" type="submit">Save</button>
-                            </div>
-                        </form>
-                    </div>
+
+    <!-- Form to add elements to the table -->
+    <a class="btn btn-dark p-absolute m-0" href="./logout.php">LogOut</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center d-flex flex-column justify-content-center">
+                <div class="mt-4 mb-3">
+                    <h1>Task Manager</h1>
+                </div>
+                <div class="m-5">
+                    <form action="../controllers/TaskController.php" method="POST" class="d-flex justify-content-center">
+                        <div class="me-2 mb-3">
+                            <input class="form-control" type="text" name="name" placeholder="Task Content">
+                            <select name="status" id="" required>
+                                <option value="" selected>--Select An Item --</option>
+                                <?php foreach ($status as $s) { ?>
+                                    <option value="<?= $s["id"] ?>"><?= $s["name"] ?></option>
+                                <?php } ?>
+                            </select>
+                            <input class="form-control" type="text" name="description" placeholder="Description">
+                            <input class="form-control" type="text" name="name" placeholder="Task Content">
+                            <input class="form-control" type="text" name="name" placeholder="Task Content">
+
+                            <input class="form-control" type="hidden" name="project_id" value="1">
+                        </div>
+                        <div class="ms-2">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <ul id="taskList"></ul>
     </div>
-
-
-
-
-
+    <ul id="taskList"></ul>
 
 
     <!-- requiring the js script tags -->
@@ -61,14 +68,7 @@ $user = $_SESSION["user"]; // getting all the clients, they will be shown in the
             fetchDataAndRender(); // Call the function from api.js
         };
     </script>
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                message: 'Hello Vue!'
-            }
-        });
-    </script>
+
 </body>
 
 </html>

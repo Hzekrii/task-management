@@ -11,14 +11,14 @@ class Task
         $sql = "SELECT 
             tasks.id, 
             tasks.name,
-            tasks.status,
+            status.name As status,
             tasks.description,
             tasks.start_date,
             tasks.due_date,
             tasks.finish_date,
             tasks.project_id
-        FROM tasks 
-        WHERE tasks.project_id = :project
+        FROM tasks join status
+        WHERE tasks.project_id = :project and tasks.status = status.id
         ORDER BY tasks.created_at DESC;";
         $params = [
             ":project" => $project
@@ -26,6 +26,7 @@ class Task
 
         return (new Database)->query($sql, $params);
     }
+
     //* create a new task
     public static function create($name, $status, $description = NULL, $start_date, $due_date, $project_id)
     {

@@ -6,18 +6,19 @@ require_once("../models/Database.php");
 class WorkspaceUser
 {
 
-    public static function all($project)
+    public static function all($workspace)
     {
         $sql = "SELECT 
-            workspaceUsers.id, 
-            workspaceUsers.user_id,
-            workspaceUsers.workspace_id,
+            workspaceUsers.id,
+            users.firstName,
+            users.LastName,
+            users.email,
             workspaceUsers.permission_id
-        FROM workspaceUsers 
-        WHERE workspaceUsers.project_id = :project
+        FROM workspaceUsers join users
+        WHERE workspaceUsers.workspace_id=:workspace
         ORDER BY workspaceUsers.created_at DESC;";
         $params = [
-            ":project" => $project
+            ":workspace" => $workspace
         ];
 
         return (new Database)->query($sql, $params);
